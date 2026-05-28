@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mobile Suraksha - Premium Cybersecurity Protection for Mobile & PC">
+    <meta name="theme-color" content="#0a5aff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mobile Suraksha">
+    
+    <title>Mobile Suraksha - Premium Cybersecurity</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%230a5aff;stop-opacity:1' /><stop offset='100%' style='stop-color:%2300d4ff;stop-opacity:1' /></linearGradient></defs><rect width='180' height='180' fill='url(%23grad)' rx='45'/><path d='M90 40 L110 70 L110 130 Q110 140 100 140 L80 140 Q70 140 70 130 L70 70 Z' fill='white' opacity='0.95'/><path d='M75 90 L85 100 L105 75' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%230a5aff;stop-opacity:1' /><stop offset='100%' style='stop-color:%2300d4ff;stop-opacity:1' /></linearGradient></defs><rect width='180' height='180' fill='url(%23grad)' rx='45'/><path d='M90 40 L110 70 L110 130 Q110 140 100 140 L80 140 Q70 140 70 130 L70 70 Z' fill='white' opacity='0.95'/><path d='M75 90 L85 100 L105 75' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="shield-loader">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 L75 25 L75 50 Q75 75 50 85 Q25 75 25 50 L25 25 Z" fill="none" stroke="url(#gradient)" stroke-width="2"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0a5aff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <p class="loading-text">Mobile Suraksha</p>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div class="app-container">
+        <!-- Landing Page -->
+        <section class="page" id="landingPage">
+            <!-- Header Navigation -->
+            <header class="header">
+                <div class="header-content">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0a5aff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M50 10 L75 25 L75 50 Q75 75 50 85 Q25 75 25 50 L25 25 Z" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+                            <path d="M40 50 L50 60 L65 35" stroke="url(#logoGrad)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Mobile Suraksha</span>
+                    </div>
+                    <nav class="nav-menu" id="navMenu">
+                        <a href="#features" class="nav-link">विशेषताएं</a>
+                        <a href="#howitworks" class="nav-link">कैसे काम करता है</a>
+                        <a href="#faq" class="nav-link">FAQ</a>
+                        <a href="#contact" class="nav-link">संपर्क करें</a>
+                        <button class="nav-btn login-btn" id="loginBtn">लॉगिन करें</button>
+                    </nav>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        आपके डिवाइस की सुरक्षा हमारा दायित्व
+                    </h1>
+                    <p class="hero-subtitle">
+                        Mobile Suraksha के साथ अपने मोबाइल और PC को साइबर हमलों से बचाएं। प्रीमियम सुरक्षा, तेज़ स्कैनिंग, और 24/7 सुरक्षा।
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="installBtn">📱 ऐप्लिकेशन इंस्टॉल करें</button>
+                        <button class="btn btn-secondary" id="getStartedBtn">शुरू करें</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="device-mockup">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <div class="screen-content">
+                                    <div class="score-display">
+                                        <div class="score-circle">98%</div>
+                                        <p>सुरक्षित</p>
+                                    </div>
+                                    <div class="threats-list">
+                                        <div class="threat-item safe">✓ कोई खतरा नहीं</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features" id="features">
+                <h2>हमारी विशेषताएं</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>लिंक स्कैनर</h3>
+                        <p>संदिग्ध लिंक और वेबसाइटों की तुरंत जांच करें</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3>फाइल स्कैनर</h3>
+                        <p>डाउनलोड की गई फाइलों को सुरक्षित रूप से स्कैन करें</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>ऐप्लिकेशन चेकर</h3>
+                        <p>इंस्टॉल किए गए ऐप्लिकेशन की सुरक्षा रेटिंग देखें</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>वेबसाइट सुरक्षा</h3>
+                        <p>फ़िशिंग और जाली वेबसाइटों से सुरक्षा</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">☎️</div>
+                        <h3>धोखाधड़ी कॉल सुरक्षा</h3>
+                        <p>स्पैम और धोखेबाज़ी कॉल से बचाव</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏦</div>
+                        <h3>बैंक संरक्षण</h3>
+                        <p>बैंकिंग लेनदेन में अतिरिक्त सुरक्षा</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section class="how-it-works" id="howitworks">
+                <h2>कैसे काम करता है</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>साइन अप करें</h3>
+                        <p>अपने Google खाते से सुरक्षित रूप से रजिस्ट्रेशन करें</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>डैशबोर्ड देखें</h3>
+                        <p>अपनी सुरक्षा स्थिति और सभी विवरण एक नज़र में पाएं</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>स्कैन शुरू करें</h3>
+                        <p>विभिन्न स्कैनिंग उपकरणों का उपयोग करके अपने उपकरणों की जांच करें</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>सुरक्षित रहें</h3>
+                        <p>24/7 सुरक्षा निगरानी और तुरंत चेतावनियाँ पाएं</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Score Preview -->
+            <section class="security-preview">
+                <h2>आपकी सुरक्षा स्थिति</h2>
+                <div class="preview-card">
+                    <div class="preview-circle">
+                        <svg viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="95" fill="none" stroke="#e0e0e0" stroke-width="8"/>
+                            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#previewGradient)" stroke-width="8" stroke-dasharray="500" stroke-dashoffset="100" class="score-ring"/>
+                            <defs>
+                                <linearGradient id="previewGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0a5aff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00ff88;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <text x="100" y="105" text-anchor="middle" font-size="32" font-weight="bold" fill="url(#previewGradient)">92</text>
+                        </svg>
+                    </div>
+                    <div class="preview-info">
+                        <h3>समग्र सुरक्षा स्कोर</h3>
+                        <p>🟢 सभी प्रणालियाँ सुरक्षित हैं</p>
+                        <div class="preview-items">
+                            <div class="preview-item">
+                                <span class="item-icon">📱</span>
+                                <span class="item-label">मोबाइल सुरक्षा: अच्छी</span>
+                            </div>
+                            <div class="preview-item">
+                                <span class="item-icon">💻</span>
+                                <span class="item-label">PC सुरक्षा: उत्कृष्ट</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq" id="faq">
+                <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>क्या Mobile Suraksha सभी डिवाइसों पर काम करता है?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>हाँ, Mobile Suraksha सभी Android, iOS, Windows और Mac डिवाइसों पर पूरी तरह से काम करता है।</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>क्या यह आपकी व्यक्तिगत जानकारी चोरी करता है?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>नहीं, Mobile Suraksha पूरी तरह से सुरक्षित है। हम आपकी व्यक्तिगत जानकारी कभी नहीं चोरी करते या साझा नहीं करते। सभी डेटा एन्क्रिप्टेड है।</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>क्या स्कैनिंग मुफ्त है?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>हाँ, सभी स्कैनिंग सेवाएं पूरी तरह से मुफ्त हैं। कोई छिपी हुई लागत नहीं है।</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>मुझे कितनी बार स्कैन करना चाहिए?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>आदर्श रूप से सप्ताह में कम से कम एक बार स्कैन करें। यदि आप संदिग्ध लिंक पर क्लिक करते हैं तो तुरंत स्कैन करें।</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact" id="contact">
+                <h2>हमसे संपर्क करें</h2>
+                <div class="contact-content">
+                    <form class="contact-form" id="contactForm">
+                        <input type="text" placeholder="आपका नाम" required>
+                        <input type="email" placeholder="आपका ईमेल" required>
+                        <textarea placeholder="आपका संदेश" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">संदेश भेजें</button>
+                    </form>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <h4>ईमेल</h4>
+                                <p>support@mobilesuraksha.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <h4>फोन</h4>
+                                <p>+91-XXXX-XXXX-XX</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <h4>पता</h4>
+                                <p>भारत, Delhi NCR</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <p>&copy; 2024 Mobile Suraksha. सर्वाधिकार सुरक्षित।</p>
+                    <div class="footer-links">
+                        <a href="#">गोपनीयता नीति</a>
+                        <a href="#">शर्तें और शर्तें</a>
+                        <a href="#">साइटमैप</a>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+        <!-- Dashboard Page -->
+        <section class="page" id="dashboardPage" style="display: none;">
+            <!-- Dashboard Header -->
+            <header class="dashboard-header">
+                <div class="dash-header-content">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="dashLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0a5aff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M50 10 L75 25 L75 50 Q75 75 50 85 Q25 75 25 50 L25 25 Z" fill="none" stroke="url(#dashLogoGrad)" stroke-width="2.5"/>
+                            <path d="M40 50 L50 60 L65 35" stroke="url(#dashLogoGrad)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Mobile Suraksha</span>
+                    </div>
+                    <div class="dash-user-menu">
+                        <button class="user-profile-btn" id="profileBtn">
+                            <img id="userAvatar" src="https://via.placeholder.com/40" alt="Profile">
+                        </button>
+                        <button class="logout-btn" id="logoutBtn">लॉगआउट</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Sidebar -->
+            <div class="dashboard-wrapper">
+                <aside class="dashboard-sidebar" id="dashboardSidebar">
+                    <nav class="sidebar-nav">
+                        <a href="#" class="nav-item active" data-section="overview">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-label">डैशबोर्ड</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="tools">
+                            <span class="nav-icon">🔧</span>
+                            <span class="nav-label">स्कैनिंग उपकरण</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="alerts">
+                            <span class="nav-icon">🔔</span>
+                            <span class="nav-label">चेतावनियाँ</span>
+                            <span class="badge" id="alertBadge">2</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="profile">
+                            <span class="nav-icon">👤</span>
+                            <span class="nav-label">प्रोफाइल</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="settings">
+                            <span class="nav-icon">⚙️</span>
+                            <span class="nav-label">सेटिंग्स</span>
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Dashboard Main Content -->
+                <main class="dashboard-main">
+                    <!-- Overview Section -->
+                    <div class="content-section active" id="overviewSection">
+                        <h1>स्वागत है, <span id="userNameDisplay">उपयोगकर्ता</span>!</h1>
+                        
+                        <!-- Security Score Card -->
+                        <div class="security-score-card glass-card">
+                            <div class="score-header">
+                                <h2>आपकी सुरक्षा स्थिति</h2>
+                                <div class="score-value">
+                                    <svg class="score-circle" viewBox="0 0 200 200">
+                                        <circle cx="100" cy="100" r="95" fill="none" stroke="#e0e0e0" stroke-width="8"/>
+                                        <circle cx="100" cy="100" r="95" fill="none" stroke="url(#scoreGradient)" stroke-width="8" stroke-dasharray="500" stroke-dashoffset="80" class="score-ring-animated"/>
+                                        <defs>
+                                            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#0a5aff;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#00ff88;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <text x="100" y="110" text-anchor="middle" font-size="40" font-weight="bold" fill="url(#scoreGradient)" id="overallScore">95</text>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="score-details">
+                                <div class="score-item">
+                                    <span class="status-icon">🟢</span>
+                                    <div>
+                                        <h4>मोबाइल सुरक्षा</h4>
+                                        <p class="score-subtitle" id="mobileHealthText">अच्छी स्थिति</p>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span class="status-icon">🟢</span>
+                                    <div>
+                                        <h4>PC सुरक्षा</h4>
+                                        <p class="score-subtitle" id="pcHealthText">उत्कृष्ट स्थिति</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="last-scan">
+                                <p>अंतिम स्कैन: <span id="lastScanTime">आज, सुबह 10:30 AM</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="quick-actions">
+                            <button class="action-btn glass-card" id="quickScanBtn">
+                                <span class="action-icon">⚡</span>
+                                <span class="action-text">त्वरित स्कैन</span>
+                            </button>
+                            <button class="action-btn glass-card" id="fullScanBtn">
+                                <span class="action-icon">🔍</span>
+                                <span class="action-text">पूर्ण स्कैन</span>
+                            </button>
+                            <button class="action-btn glass-card" id="updateBtn">
+                                <span class="action-icon">🔄</span>
+                                <span class="action-text">अपडेट करें</span>
+                            </button>
+                        </div>
+
+                        <!-- Threat Alerts -->
+                        <div class="threats-section glass-card">
+                            <h3>सुरक्षा चेतावनियाँ</h3>
+                            <div class="threats-list" id="threatsList">
+                                <div class="threat-item safe">
+                                    <span class="threat-status">✓</span>
+                                    <span class="threat-text">कोई खतरा नहीं मिला</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Device Status -->
+                        <div class="devices-status glass-card">
+                            <h3>डिवाइस स्थिति</h3>
+                            <div class="device-list">
+                                <div class="device-item">
+                                    <div class="device-info">
+                                        <span class="device-icon">📱</span>
+                                        <div>
+                                            <h4>मेरा मोबाइल</h4>
+                                            <p>Android 13 • आखिरी स्कैन: आज</p>
+                                        </div>
+                                    </div>
+                                    <span class="device-status secure">सुरक्षित</span>
+                                </div>
+                                <div class="device-item">
+                                    <div class="device-info">
+                                        <span class="device-icon">💻</span>
+                                        <div>
+                                            <h4>मेरा PC</h4>
+                                            <p>Windows 11 • आखिरी स्कैन: कल</p>
+                                        </div>
+                                    </div>
+                                    <span class="device-status secure">सुरक्षित</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools Section -->
+                    <div class="content-section" id="toolsSection">
+                        <h1>स्कैनिंग उपकरण</h1>
+                        <div class="tools-grid">
+                            <!-- Link Scanner Tool -->
+                            <div class="tool-card glass-card" data-tool="link-scanner">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🔗</span>
+                                    <h3>लिंक स्कैनर</h3>
+                                </div>
+                                <p>किसी भी लिंक को स्कैन करें और जानें कि वह सुरक्षित है या नहीं</p>
+                                <button class="btn btn-secondary tool-btn">स्कैन करें</button>
+                            </div>
+
+                            <!-- File Scanner Tool -->
+                            <div class="tool-card glass-card" data-tool="file-scanner">
+                                <div class="tool-header">
+                                    <span class="tool-icon">📄</span>
+                                    <h3>फाइल स्कैनर</h3>
+                                </div>
+                                <p>फाइलों को अपलोड करें और उन्हें मैलवेयर के लिए जांचें</p>
+                                <button class="btn btn-secondary tool-btn">अपलोड करें</button>
+                            </div>
+
+                            <!-- App Risk Checker -->
+                            <div class="tool-card glass-card" data-tool="app-checker">
+                                <div class="tool-header">
+                                    <span class="tool-icon">📱</span>
+                                    <h3>ऐप सुरक्षा चेकर</h3>
+                                </div>
+                                <p>अपने डिवाइस पर इंस्टॉल किए गए ऐप्स की जांच करें</p>
+                                <button class="btn btn-secondary tool-btn">स्कैन करें</button>
+                            </div>
+
+                            <!-- Website Danger Checker -->
+                            <div class="tool-card glass-card" data-tool="website-checker">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🌐</span>
+                                    <h3>वेबसाइट सुरक्षा जांच</h3>
+                                </div>
+                                <p>फ़िशिंग और जाली वेबसाइटों से सुरक्षा पाएं</p>
+                                <button class="btn btn-secondary tool-btn">जांचें</button>
+                            </div>
+
+                            <!-- Fraud Call Checker -->
+                            <div class="tool-card glass-card" data-tool="fraud-call">
+                                <div class="tool-header">
+                                    <span class="tool-icon">☎️</span>
+                                    <h3>धोखाधड़ी कॉल सुरक्षा</h3>
+                                </div>
+                                <p>संदिग्ध फोन नंबरों की पहचान करें और अपना बचाव करें</p>
+                                <button class="btn btn-secondary tool-btn">जांचें</button>
+                            </div>
+
+                            <!-- Bank Fraud Protection -->
+                            <div class="tool-card glass-card" data-tool="bank-fraud">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🏦</span>
+                                    <h3>बैंक सुरक्षा</h3>
+                                </div>
+                                <p>अपने बैंकिंग लेनदेन और OTP को सुरक्षित रखें</p>
+                                <button class="btn btn-secondary tool-btn">सुरक्षा युक्तियाँ</button>
+                            </div>
+                        </div>
+
+                        <!-- Scanner Modal -->
+                        <div class="modal" id="scannerModal">
+                            <div class="modal-content glass-card">
+                                <button class="modal-close">&times;</button>
+                                <h2 id="scannerTitle">स्कैनर</h2>
+                                <div class="scanner-content" id="scannerContent"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alerts Section -->
+                    <div class="content-section" id="alertsSection">
+                        <h1>सुरक्षा चेतावनियाँ</h1>
+                        <div class="alerts-container">
+                            <div class="alert-card glass-card success">
+                                <span class="alert-icon">✓</span>
+                                <div class="alert-content">
+                                    <h4>सभी सिस्टम सुरक्षित</h4>
+                                    <p>कोई खतरा नहीं मिला। आपका डिवाइस पूरी तरह सुरक्षित है।</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Section -->
+                    <div class="content-section" id="profileSection">
+                        <h1>मेरी प्रोफाइल</h1>
+                        <div class="profile-card glass-card">
+                            <div class="profile-header">
+                                <img id="profileAvatar" src="https://via.placeholder.com/100" alt="Profile" class="profile-image">
+                                <div class="profile-info">
+                                    <h2 id="profileName">उपयोगकर्ता का नाम</h2>
+                                    <p id="profileEmail">user@example.com</p>
+                                </div>
+                            </div>
+                            <div class="profile-details">
+                                <div class="detail-item">
+                                    <label>खाता बनाया गया:</label>
+                                    <p id="accountCreated">15 जनवरी 2024</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>अंतिम लॉगिन:</label>
+                                    <p id="lastLogin">आज, 2:30 PM</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>कुल स्कैन:</label>
+                                    <p id="totalScans">24</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div class="content-section" id="settingsSection">
+                        <h1>सेटिंग्स</h1>
+                        <div class="settings-container">
+                            <div class="settings-group glass-card">
+                                <h3>सूचनाएँ</h3>
+                                <div class="setting-item">
+                                    <label>धमकी सचेतकताएँ सक्षम करें</label>
+                                    <input type="checkbox" checked>
+                                </div>
+                                <div class="setting-item">
+                                    <label>साप्ताहिक रिपोर्ट प्राप्त करें</label>
+                                    <input type="checkbox" checked>
+                                </div>
+                            </div>
+                            <div class="settings-group glass-card">
+                                <h3>गोपनीयता</h3>
+                                <div class="setting-item">
+                                    <label>स्कैनिंग डेटा साझा करें</label>
+                                    <input type="checkbox">
+                                </div>
+                            </div>
+                            <button class="btn btn-danger" id="deleteAccountBtn">खाता हटाएं</button>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Mobile Bottom Navigation -->
+                <nav class="bottom-nav" id="bottomNav">
+                    <a href="#" class="bottom-nav-item active" data-section="overview">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-label">डैशबोर्ड</span>
+                    </a>
+                    <a href="#" class="bottom-nav-item" data-section="tools">
+                        <span class="nav-icon">🔧</span>
+                        <span class="nav-label">उपकरण</span>
+                    </a>
+                    <a href="#" class="bottom-nav-item" data-section="alerts">
+                        <span class="nav-icon">🔔</span>
+                        <span class="nav-label">चेतावनियाँ</span>
+                    </a>
+                    <a href="#" class="bottom-nav-item" data-section="profile">
+                        <span class="nav-icon">👤</span>
+                        <span class="nav-label">प्रोफाइल</span>
+                    </a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- App Installation Page -->
+        <section class="page" id="appInstallPage" style="display: none;">
+            <div class="install-container">
+                <!-- Installation Progress -->
+                <div class="install-card glass-card" id="installCard">
+                    <div class="install-header">
+                        <svg class="install-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="installGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0a5aff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M50 10 L75 25 L75 50 Q75 75 50 85 Q25 75 25 50 L25 25 Z" fill="none" stroke="url(#installGrad)" stroke-width="2.5"/>
+                            <path d="M40 50 L50 60 L65 35" stroke="url(#installGrad)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h2>Mobile Suraksha इंस्टॉल करें</h2>
+                    </div>
+
+                    <div class="install-stages" id="installStages">
+                        <!-- Stage 1: Ready -->
+                        <div class="install-stage active" id="stage-ready">
+                            <div class="stage-content">
+                                <p class="stage-message">ऐप्लिकेशन इंस्टॉलेशन शुरू करने के लिए तैयार</p>
+                                <button class="btn btn-primary install-next" onclick="nextInstallStage()">इंस्टॉलेशन शुरू करें</button>
+                            </div>
+                        </div>
+
+                        <!-- Stage 2: Downloading -->
+                        <div class="install-stage" id="stage-downloading">
+                            <div class="stage-content">
+                                <p class="stage-title">डाउनलोड हो रहा है...</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="downloadProgress"></div>
+                                </div>
+                                <p class="stage-message" id="downloadText">0%</p>
+                            </div>
+                        </div>
+
+                        <!-- Stage 3: Verifying -->
+                        <div class="install-stage" id="stage-verifying">
+                            <div class="stage-content">
+                                <p class="stage-title">पैकेज सत्यापित हो रहा है...</p>
+                                <div class="spinner"></div>
+                                <p class="stage-message">कृपया प्रतीक्षा करें...</p>
+                            </div>
+                        </div>
+
+                        <!-- Stage 4: Android Install Screen -->
+                        <div class="install-stage" id="stage-android">
+                            <div class="android-install-ui">
+                                <div class="android-header">
+                                    <span class="android-back">← वापस</span>
+                                    <span class="android-title">Mobile Suraksha इंस्टॉल करें</span>
+                                </div>
+                                <div class="android-content">
+                                    <div class="app-info">
+                                        <img class="app-icon" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%230a5aff;stop-opacity:1' /><stop offset='100%' style='stop-color:%2300d4ff;stop-opacity:1' /></linearGradient></defs><rect width='180' height='180' fill='url(%23grad)' rx='45'/><path d='M90 40 L110 70 L110 130 Q110 140 100 140 L80 140 Q70 140 70 130 L70 70 Z' fill='white' opacity='0.95'/><path d='M75 90 L85 100 L105 75' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+                                        <div class="app-details">
+                                            <h3>Mobile Suraksha</h3>
+                                            <p class="app-size">आकार: 24.5 MB</p>
+                                            <p class="app-rating">⭐ 4.8 (1.2K समीक्षाएं)</p>
+                                        </div>
+                                    </div>
+                                    <div class="permissions-section">
+                                        <h4>यह ऐप्स को निम्नलिखित अनुमति की आवश्यकता है:</h4>
+                                        <ul class="permissions-list">
+                                            <li>📱 डिवाइस की जानकारी तक पहुंच</li>
+                                            <li>🔐 सुरक्षा सेटिंग्स</li>
+                                            <li>🌐 इंटरनेट कनेक्शन</li>
+                                            <li>💾 स्टोरेज</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="android-buttons">
+                                    <button class="btn-android cancel" onclick="previousInstallStage()">रद्द करें</button>
+                                    <button class="btn-android install" onclick="nextInstallStage()">इंस्टॉल करें</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stage 5: Installing -->
+                        <div class="install-stage" id="stage-installing">
+                            <div class="stage-content">
+                                <p class="stage-title">इंस्टॉलेशन चल रहा है...</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="installProgress"></div>
+                                </div>
+                                <p class="stage-message" id="installText">0%</p>
+                            </div>
+                        </div>
+
+                        <!-- Stage 6: Success -->
+                        <div class="install-stage" id="stage-success">
+                            <div class="stage-content">
+                                <div class="success-icon">✓</div>
+                                <p class="stage-title">इंस्टॉलेशन पूर्ण!</p>
+                                <p class="stage-message">Mobile Suraksha सफलतापूर्वक इंस्टॉल हो गया है।</p>
+                                <button class="btn btn-primary install-next" onclick="openInstalledApp()">ऐप्लिकेशन खोलें</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back Button -->
+                <button class="install-back-btn" onclick="backFromInstall()">← पीछे जाएं</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Install Prompt (for real PWA) -->
+    <div class="install-prompt glass-card" id="installPrompt" style="display: none;">
+        <div class="prompt-content">
+            <div class="prompt-icon">📱</div>
+            <h3>ऐप्लिकेशन इंस्टॉल करें</h3>
+            <p>Mobile Suraksha को अपने डिवाइस पर इंस्टॉल करें और हर जगह सुरक्षित रहें।</p>
+            <div class="prompt-buttons">
+                <button id="installPWABtn" class="btn btn-primary">इंस्टॉल करें</button>
+                <button id="dismissPWABtn" class="btn btn-secondary">अभी नहीं</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="firebase.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
